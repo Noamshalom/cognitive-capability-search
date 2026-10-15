@@ -1,0 +1,15 @@
+[1/2] search: 3 worlds x 4 methods x 240 evaluations
+  world 0 ccs-adaptive     done in   105s  best=+0.532
+  world 0 ccs-local        done in   141s  best=+0.223
+  world 0 ccs-global       done in   142s  best=+0.548
+  world 0 random-adaptive  done in   156s  best=+0.417
+  world 1 ccs-adaptive     done in   107s  best=+0.521
+  world 1 ccs-local        done in   136s  best=+0.143
+  world 1 ccs-global       done in   136s  best=+0.515
+  world 1 random-adaptive  done in   164s  best=+0.407
+  world 2 ccs-adaptive     done in   121s  best=+0.444
+  world 2 ccs-local        done in   139s  best=+0.197
+  world 2 ccs-global       done in   148s  best=+0.477
+  world 2 random-adaptive  done in   126s  best=+0.306
+[2/2] re-evaluating winners and baselines on fresh seeds + held-out battery
+wrote results/results.json

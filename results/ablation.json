@@ -1,0 +1,146 @@
+[
+ {
+  "world": 0,
+  "name": "ccs-adaptive",
+  "cond": "channel",
+  "gain": 0.5412142423605452,
+  "interference": 0.0008608711390214833,
+  "score": 0.5378533712215238
+ },
+ {
+  "world": 0,
+  "name": "ccs-adaptive",
+  "cond": "mixed",
+  "gain": 0.5860116004833228,
+  "interference": 0.3945692195748502,
+  "score": 0.18894238090847257
+ },
+ {
+  "world": 0,
+  "name": "ccs-adaptive",
+  "cond": "both",
+  "gain": 0.5279546962688045,
+  "interference": 0.16185510813806772,
+  "score": 0.36359958813073673
+ },
+ {
+  "world": 0,
+  "name": "ccs-global",
+  "cond": "channel",
+  "gain": 0.5753246712084364,
+  "interference": 0.021960186815522104,
+  "score": 0.5433644843929142
+ },
+ {
+  "world": 0,
+  "name": "ccs-global",
+  "cond": "mixed",
+  "gain": 0.6151066484794173,
+  "interference": 0.9670220154993229,
+  "score": -0.3619153670199055
+ },
+ {
+  "world": 0,
+  "name": "ccs-global",
+  "cond": "both",
+  "gain": 0.6142459689331803,
+  "interference": 0.9302704119994686,
+  "score": -0.3260244430662883
+ },
+ {
+  "world": 1,
+  "name": "ccs-adaptive",
+  "cond": "channel",
+  "gain": 0.542272144590274,
+  "interference": 0.013659860300556178,
+  "score": 0.5211122842897179
+ },
+ {
+  "world": 1,
+  "name": "ccs-adaptive",
+  "cond": "mixed",
+  "gain": 0.572983260506739,
+  "interference": 0.9482536147160104,
+  "score": -0.38277035420927136
+ },
+ {
+  "world": 1,
+  "name": "ccs-adaptive",
+  "cond": "both",
+  "gain": 0.5558468471639704,
+  "interference": 0.5100360457992996,
+  "score": 0.03831080136467071
+ },
+ {
+  "world": 1,
+  "name": "ccs-global",
+  "cond": "channel",
+  "gain": 0.5275265973236337,
+  "interference": 0.0008800630282622679,
+  "score": 0.5166465342953714
+ },
+ {
+  "world": 1,
+  "name": "ccs-global",
+  "cond": "mixed",
+  "gain": 0.5757535668921703,
+  "interference": 0.9722767122648138,
+  "score": -0.4065231453726436
+ },
+ {
+  "world": 1,
+  "name": "ccs-global",
+  "cond": "both",
+  "gain": 0.5195720330090468,
+  "interference": 0.8019568721577445,
+  "score": -0.2923848391486977
+ },
+ {
+  "world": 2,
+  "name": "ccs-adaptive",
+  "cond": "channel",
+  "gain": 0.44380465352534343,
+  "interference": 0.001869672212816827,
+  "score": 0.4394349813125266
+ },
+ {
+  "world": 2,
+  "name": "ccs-adaptive",
+  "cond": "mixed",
+  "gain": 0.4782167295802819,
+  "interference": 0.9459579898821308,
+  "score": -0.4702412603018489
+ },
+ {
+  "world": 2,
+  "name": "ccs-adaptive",
+  "cond": "both",
+  "gain": 0.4473831950636344,
+  "interference": 0.3772095099204454,
+  "score": 0.06767368514318894
+ },
+ {
+  "world": 2,
+  "name": "ccs-global",
+  "cond": "channel",
+  "gain": 0.4893440836510589,
+  "interference": 0.00032253801586264635,
+  "score": 0.4790215456351963
+ },
+ {
+  "world": 2,
+  "name": "ccs-global",
+  "cond": "mixed",
+  "gain": 0.521934923563659,
+  "interference": 0.9646740381267135,
+  "score": -0.4527391145630546
+ },
+ {
+  "world": 2,
+  "name": "ccs-global",
+  "cond": "both",
+  "gain": 0.5240251613452215,
+  "interference": 0.7489741897514989,
+  "score": -0.23494902840627738
+ }
+]

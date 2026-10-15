@@ -1,0 +1,146 @@
+[
+ {
+  "world": 0,
+  "name": "hand-global",
+  "before_on": 0.9640443225461847,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.27831432648251264,
+  "after_off": -0.07770974452961177
+ },
+ {
+  "world": 0,
+  "name": "hand-local",
+  "before_on": 0.9640443225461847,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.9601871475897034,
+  "after_off": 0.9670220154993229
+ },
+ {
+  "world": 0,
+  "name": "ccs-adaptive",
+  "before_on": 0.9643560897004092,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.8792122400230383,
+  "after_off": 0.9661611443603014
+ },
+ {
+  "world": 0,
+  "name": "ccs-global",
+  "before_on": 0.9643774098951807,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.8527258980538974,
+  "after_off": 0.9450618286838007
+ },
+ {
+  "world": 0,
+  "name": "ccs-local",
+  "before_on": 0.9643774098951807,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.9577428594888877,
+  "after_off": 0.9670220154993229
+ },
+ {
+  "world": 0,
+  "name": "random-adaptive",
+  "before_on": 0.9642617614668347,
+  "before_off": 0.9670220154993229,
+  "after_on": 0.8910504353175152,
+  "after_off": 0.96569192799989
+ },
+ {
+  "world": 1,
+  "name": "hand-global",
+  "before_on": 0.9703800635664888,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.253126921585765,
+  "after_off": 0.2149867077339412
+ },
+ {
+  "world": 1,
+  "name": "hand-local",
+  "before_on": 0.9703800635664888,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.9673003244629729,
+  "after_off": 0.9722767122648138
+ },
+ {
+  "world": 1,
+  "name": "ccs-adaptive",
+  "before_on": 0.9705975299344004,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.8690426345647401,
+  "after_off": 0.9586168519642576
+ },
+ {
+  "world": 1,
+  "name": "ccs-global",
+  "before_on": 0.970136039701265,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.8825855673893542,
+  "after_off": 0.9713966492365516
+ },
+ {
+  "world": 1,
+  "name": "ccs-local",
+  "before_on": 0.9701130178737267,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.9652779802969934,
+  "after_off": 0.9722767122648138
+ },
+ {
+  "world": 1,
+  "name": "random-adaptive",
+  "before_on": 0.9709618306899019,
+  "before_off": 0.9722767122648138,
+  "after_on": 0.8673371500733408,
+  "after_off": 0.9691510263059188
+ },
+ {
+  "world": 2,
+  "name": "hand-global",
+  "before_on": 0.9623049490053149,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.4029143417202941,
+  "after_off": 0.18444467422769653
+ },
+ {
+  "world": 2,
+  "name": "hand-local",
+  "before_on": 0.9623049490053149,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.9589945135509114,
+  "after_off": 0.9646740381267135
+ },
+ {
+  "world": 2,
+  "name": "ccs-adaptive",
+  "before_on": 0.961687988370444,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.8819436835987057,
+  "after_off": 0.9628043659138967
+ },
+ {
+  "world": 2,
+  "name": "ccs-global",
+  "before_on": 0.9625305015559722,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.8888016708935842,
+  "after_off": 0.964351500110851
+ },
+ {
+  "world": 2,
+  "name": "ccs-local",
+  "before_on": 0.9621519003911396,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.9587766514035385,
+  "after_off": 0.9646740381267135
+ },
+ {
+  "world": 2,
+  "name": "random-adaptive",
+  "before_on": 0.9625849472422886,
+  "before_off": 0.9646740381267136,
+  "after_on": 0.897990677002892,
+  "after_off": 0.96415852115129
+ }
+]
