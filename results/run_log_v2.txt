@@ -1,0 +1,33 @@
+[1/2] search: worlds [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] x 3 methods x 240 evaluations, metric v2
+  world 0 ccs-adaptive     done in    83s  best=+0.417
+  world 1 ccs-global       done in   133s  best=+0.464
+  world 0 ccs-global       done in   119s  best=+0.411
+  world 1 random-adaptive  done in   136s  best=+0.334
+  world 0 random-adaptive  done in   131s  best=+0.347
+  world 2 ccs-adaptive     done in   115s  best=+0.432
+  world 1 ccs-adaptive     done in    97s  best=+0.417
+  world 2 ccs-global       done in   121s  best=+0.407
+  world 2 random-adaptive  done in   124s  best=+0.238
+  world 4 ccs-adaptive     done in   104s  best=+0.284
+  world 3 ccs-adaptive     done in    89s  best=+0.396
+  world 4 ccs-global       done in   133s  best=+0.342
+  world 3 ccs-global       done in   128s  best=+0.409
+  world 4 random-adaptive  done in   126s  best=+0.270
+  world 3 random-adaptive  done in   123s  best=+0.306
+  world 5 ccs-adaptive     done in    95s  best=+0.348
+  world 5 ccs-global       done in   108s  best=+0.500
+  world 6 random-adaptive  done in   137s  best=+0.347
+  world 5 random-adaptive  done in   124s  best=+0.255
+  world 7 ccs-adaptive     done in    87s  best=+0.408
+  world 6 ccs-adaptive     done in   113s  best=+0.425
+  world 7 ccs-global       done in   134s  best=+0.491
+  world 6 ccs-global       done in   131s  best=+0.303
+  world 7 random-adaptive  done in   134s  best=+0.255
+  world 8 ccs-adaptive     done in    93s  best=+0.382
+  world 8 ccs-global       done in   125s  best=+0.353
+  world 9 ccs-global       done in   137s  best=+0.394
+  world 8 random-adaptive  done in   126s  best=+0.226
+  world 9 random-adaptive  done in   128s  best=+0.297
+  world 9 ccs-adaptive     done in    66s  best=+0.405
+[2/2] re-evaluating winners and baselines on fresh seeds + held-out battery
+wrote results/results_v2.json

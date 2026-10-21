@@ -1,0 +1,10 @@
+
+== input during learning: channel ==  innate after 0.960
+  restored by reverting: {'b1': np.float64(0.0), 'W1': np.float64(0.0), 'W2a': np.float64(0.008), 'b2': np.float64(0.0), 'W2b': np.float64(0.0), 'Wc': np.float64(0.0)}
+  pre-activation shift on innate input (in units of signal sd): constant 0.01, input-dependent 0.10
+  |dW1|/|W1| 0.00   |dW2a|/|W2a| 0.09   top-SV share of dW2a 0.42
+
+== input during learning: both ==  innate after 0.068
+  restored by reverting: {'b1': np.float64(-0.0), 'W1': np.float64(0.827), 'W2a': np.float64(0.443), 'b2': np.float64(-0.0), 'W2b': np.float64(0.0), 'Wc': np.float64(0.0)}
+  pre-activation shift on innate input (in units of signal sd): constant 0.02, input-dependent 0.79
+  |dW1|/|W1| 0.23   |dW2a|/|W2a| 0.23   top-SV share of dW2a 0.26

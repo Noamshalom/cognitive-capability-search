@@ -1,0 +1,17 @@
+[1/2] search: worlds [3, 4, 5, 6, 7, 8, 9] x 2 methods x 240 evaluations, metric v1
+  world 3 ccs-adaptive     done in   124s  best=+0.434
+  world 4 ccs-adaptive     done in   152s  best=+0.425
+  world 3 ccs-global       done in   118s  best=+0.380
+  world 4 ccs-global       done in   125s  best=+0.539
+  world 5 ccs-adaptive     done in   112s  best=+0.436
+  world 6 ccs-adaptive     done in   125s  best=+0.351
+  world 5 ccs-global       done in   111s  best=+0.540
+  world 6 ccs-global       done in   125s  best=+0.535
+  world 7 ccs-adaptive     done in    89s  best=+0.482
+  world 8 ccs-adaptive     done in    99s  best=+0.533
+  world 7 ccs-global       done in   132s  best=+0.517
+  world 8 ccs-global       done in   124s  best=+0.393
+  world 9 ccs-adaptive     done in    85s  best=+0.582
+  world 9 ccs-global       done in   104s  best=+0.418
+[2/2] re-evaluating winners and baselines on fresh seeds + held-out battery
+wrote results/results_v1_extra.json

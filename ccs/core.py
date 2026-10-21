@@ -32,6 +32,10 @@ MAX_STEPS = 2 * max(STEPS)
 
 BETA = 1.0     # interference penalty
 GAMMA = 0.02   # training-time cost (per MAX_STEPS)
+# Interference metric version. v1 (original study): innate task measured with the new
+# channel silent. v2: the worse of channel-silent and channel-on, so crosstalk through
+# the new pathway is penalised too (closes the gap the v1 search exploited).
+METRIC = "v1"
 N_SHOT = 64    # samples for a few-shot linear probe ("cheaply readable")
 
 
@@ -242,11 +246,13 @@ def evaluate(g, world, L0, D, base_innate, seed: int = 0, keep=False):
     L = acquire(L0, world, g, seed=seed)
     C1 = capability_matrix(L, world, g, D)
     inn = innate_r2(L, D)
+    inn_on = innate_r2(L, D, world, g)
     gain = float((C1 - C0).mean())
-    interference = max(0.0, base_innate - max(inn, 0.0))
+    worst = inn if METRIC == "v1" else min(inn, inn_on)
+    interference = max(0.0, base_innate - max(worst, 0.0))
     cost = total_steps(g) / MAX_STEPS
     score = gain - BETA * interference - GAMMA * cost
-    out = {"gain": gain, "interference": interference, "innate": inn, "cost": cost,
+    out = {"gain": gain, "interference": interference, "innate": inn, "innate_on": inn_on, "cost": cost,
            "score": score, "C0": C0.tolist(), "C1": C1.tolist()}
     if keep:
         out["learner"] = L

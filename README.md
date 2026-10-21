@@ -54,7 +54,11 @@ Everything is repeated in 3 independently generated worlds, and winners are re-t
    tasks that need a previously hidden latent (0.28 → 0.58–0.60), with visible-latent tasks nearly unchanged.
 3. **The search found a principle we didn't design in: learn the new channel while the old sense is silent.**
    All 12 winners chose it. Change only that setting and interference jumps from ≈0.01 to 0.35–0.97 at the
-   same gain (`results/ablation_summary.md`).
+   same gain (`results/ablation_summary.md`). **Mechanism** (`run_mechanism.py`): with the sense silent, the
+   sensory weights get exactly zero gradient and the association region's input-dependent change is 0.10 SD
+   instead of 0.79; a revert test shows the damage in the ablated condition lives in `W1` (restores 0.83) and
+   `W2a` (0.44). The search rediscovered gradient isolation, the principle behind weight freezing and
+   progressive networks, by choosing an input regime, without knowing the architecture.
 4. **Negative result:** adaptive, region-level plasticity did *not* beat global plasticity once input gating
    was available. It helps only as a second line of defence: interference is 0.35 vs 0.83 when gating is
    removed. Local-only plasticity fails because a new capability needs the association region to change.
@@ -64,12 +68,34 @@ Everything is repeated in 3 independently generated worlds, and winners are re-t
 
 ![profile](figures/fig3_profile.png)
 
+### Replication: 10 worlds, corrected metric
+
+Because the search exploited the channel-off interference metric, the study was re-run in 10 independently
+generated worlds with interference = worse of channel-off and channel-on (`--metric v2`). Everything survives:
+
+| condition | score (mean ± 95% CI) | gain | interference | innate, channel on | battery, hidden |
+|---|---|---|---|---|---|
+| Hand-designed, global | −0.212 ± 0.047 | 0.658 | 0.860 | 0.295 | 0.726 |
+| Hand-designed, local | +0.111 ± 0.014 | 0.127 | 0.006 | 0.961 | 0.380 |
+| Random search, adaptive | +0.285 ± 0.024 | 0.357 | 0.065 | 0.903 | 0.401 |
+| **CCS, global plasticity** | **+0.409 ± 0.041** | 0.501 | 0.081 | 0.886 | 0.525 |
+| **CCS, adaptive plasticity** | **+0.395 ± 0.028** | 0.468 | 0.067 | 0.900 | 0.506 |
+
+CCS beats random search in 10/10 worlds (adaptive, sign test p = 0.002) and 9/10 (global). All 20 winners chose
+channel-only input and a linear code. Adaptive vs global: no difference (4/10). The search did *not* find a
+crosstalk-free environment; it simply paid the penalty, at essentially the same gain. Full analysis in
+`results/robustness.md`.
+
 ## Run it
 
 ```bash
 pip install -r requirements.txt          # numpy, matplotlib
 python run_experiments.py                # ~15 min on 2 cores  -> results/results.json
 python run_ablation.py                   # ~1 min              -> results/ablation*.json, crosstalk.json
+python run_mechanism.py                  # ~1 min              -> results/mechanism.json
+python run_experiments.py --metric v2 --worlds 10 --methods ccs-adaptive,ccs-global,random-adaptive \
+       --out results/results_v2.json      # ~35 min: the replication
+python analyze_robustness.py results/results_v2.json results/results.json results/results_v1_extra.json
 python make_figures.py                   # figures/ + results/summary.md
 python run_experiments.py --quick        # 1-minute smoke test
 ```
@@ -88,7 +114,7 @@ paper/            LaTeX source + PDF
 
 It isn't a claim about human brains. The learner is a three-region tanh network, "capability" means
 linear decodability of a synthetic world's factors, and three worlds with 240 evaluations each is small.
-This is a framing and a working method, not a discovery about cognition.
+The environment space is one we designed. This is a framing and a working method, not a discovery about cognition.
 
 ## Why it might matter
 

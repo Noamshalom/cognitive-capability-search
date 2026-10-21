@@ -18,12 +18,17 @@ from ccs.learner import develop
 from ccs.search import Evaluator, genetic_search, random_search, serialise, deserialise
 from ccs.world import World
 
-METHODS = ("ccs-adaptive", "ccs-global", "ccs-local", "random-adaptive")
+ALL_METHODS = ("ccs-adaptive", "ccs-global", "ccs-local", "random-adaptive")
+METHODS = ALL_METHODS
 
 HAND = {  # the "obvious" interface a human designer might pick first
     "carried": np.ones(8, dtype=int), "code": "linear", "noise": 0.05,
     "w_rec": 1.0, "w_align": 0.0, "cond": "both", "lr": 3e-3,
 }
+
+
+def _init(metric):
+    core.METRIC = metric
 
 
 def setup(world_seed):
@@ -38,7 +43,7 @@ def job(args):
     t = time.time()
     world, L0, D, base = setup(world_seed)
     ev = Evaluator(world, L0, D, base, seed=world_seed)
-    rng = np.random.default_rng(1000 * world_seed + METHODS.index(method))
+    rng = np.random.default_rng(1000 * world_seed + ALL_METHODS.index(method))
     regime = method.split("-")[1]
     if method.startswith("ccs"):
         best, _, _ = genetic_search(ev, regime, rng, pop=pop, gens=gens)
@@ -68,22 +73,31 @@ def reevaluate(args):
 
 
 def main():
+    global METHODS
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--worlds", type=int, default=3)
+    ap.add_argument("--first-world", type=int, default=0)
     ap.add_argument("--procs", type=int, default=os.cpu_count())
+    ap.add_argument("--metric", choices=("v1", "v2"), default="v1",
+                    help="v1: interference with channel silent (original). v2: also with channel on.")
+    ap.add_argument("--methods", default=",".join(METHODS))
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
+    core.METRIC = a.metric
+    METHODS = tuple(a.methods.split(","))
     pop, gens, worlds = (8, 3, 1) if a.quick else (20, 12, a.worlds)
+    world_ids = list(range(a.first_world, a.first_world + worlds))
     os.makedirs("results", exist_ok=True)
 
-    print(f"[1/2] search: {worlds} worlds x {len(METHODS)} methods x {pop * gens} evaluations")
-    jobs = [(w, m, pop, gens) for w in range(worlds) for m in METHODS]
-    with Pool(a.procs) as pool:
+    print(f"[1/2] search: worlds {world_ids} x {len(METHODS)} methods x {pop * gens} evaluations, metric {a.metric}")
+    jobs = [(w, m, pop, gens) for w in world_ids for m in METHODS]
+    with Pool(a.procs, initializer=_init, initargs=(a.metric,)) as pool:
         searches = pool.map(job, jobs)
 
     print("[2/2] re-evaluating winners and baselines on fresh seeds + held-out battery")
     re_jobs = []
-    for w in range(worlds):
+    for w in world_ids:
         re_jobs.append((w, "innate-only", None))
         for regime, phases in (("hand-global", [((1, 1, 1), 600), ((0, 0, 0), 0)]),
                                ("hand-local", [((0, 1, 0), 600), ((0, 0, 0), 0)])):
@@ -91,14 +105,14 @@ def main():
         for s in searches:
             if s["world"] == w:
                 re_jobs.append((w, s["method"], s["best"]))
-    with Pool(a.procs) as pool:
+    with Pool(a.procs, initializer=_init, initargs=(a.metric,)) as pool:
         finals = pool.map(reevaluate, re_jobs)
 
-    out = {"config": {"pop": pop, "gens": gens, "worlds": worlds, "beta": core.BETA,
-                      "gamma": core.GAMMA, "n_shot": core.N_SHOT},
+    out = {"config": {"pop": pop, "gens": gens, "worlds": world_ids, "beta": core.BETA,
+                      "gamma": core.GAMMA, "n_shot": core.N_SHOT, "metric": a.metric, "methods": METHODS},
            "hidden_task_mask": core.Battery().hidden_mask().tolist(),
            "searches": searches, "finals": finals}
-    path = "results/results_quick.json" if a.quick else "results/results.json"
+    path = a.out or ("results/results_quick.json" if a.quick else "results/results.json")
     with open(path, "w") as f:
         json.dump(out, f)
     print(f"wrote {path}")

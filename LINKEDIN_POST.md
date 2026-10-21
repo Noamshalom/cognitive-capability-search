@@ -14,10 +14,10 @@ The question isn't "how do I teach it X?" It's "what can this learner become?"
 
 In a deliberately small toy model (a network that "grows up" seeing only half of its world's hidden causes):
 
-→ Search found environments that only 0.4% of random ones match.
-→ The new abilities transferred to tasks the search never saw. Performance on tasks needing previously invisible information roughly doubled (R² 0.28 → ~0.60).
-→ The most interesting result was a principle I didn't design in. Every winner learned the new channel while the old sense was silent. Change only that setting and the damage to existing abilities jumps from ~1% to 35–97%.
-→ And one honest failure: my favorite hypothesis, that smart region-level plasticity control would win, didn't hold up. The search also gamed my interference metric, which is a lesson in itself.
+→ Search beat random sampling in 10 out of 10 worlds. Only 0.3% of random environments reach its level.
+→ The new abilities transferred to tasks the search never saw. Performance on tasks needing previously invisible information roughly doubled (R² 0.28 → 0.5–0.6).
+→ The most interesting result was a principle I didn't design in. Every one of 20 winners learned the new channel while the old sense was silent. Change only that setting and the damage to existing abilities jumps from ~1% to 35–97%. The reason turned out to be simple: with the old sense silent, its pathway gets no gradient. The search rediscovered gradient isolation on its own.
+→ And one honest failure: my favorite hypothesis, that smart region-level plasticity control would win, didn't hold up. The search also gamed my first interference metric. I fixed the metric, re-ran everything, and the findings survived.
 
 This says nothing about human brains yet. It's a toy network, not a neuroscience result. But I think it's the right shape of question, and it can be posed as a search.
 
