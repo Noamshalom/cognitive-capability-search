@@ -18,7 +18,7 @@ A Computational Framework for Discovering Learnable Capabilities}
 \author{Noam Shalom\\
 \small Reichman University\\
 \small \texttt{noamshalom77@gmail.com}}
-\date{October 2026 \quad--- \quad working paper}
+\date{October 2026, working paper}
 
 \begin{document}
 \maketitle
@@ -30,19 +30,19 @@ not asked directly: \emph{what else could a fixed learner become, given the righ
 training environment?} We formalise this as \textbf{Cognitive Capability Search (CCS)}: an outer
 loop that searches over interfaces, objectives, input conditions and plasticity schedules for a
 fixed-architecture learner, scored by how much new world structure becomes cheaply readable
-(\emph{capability gain}) minus damage to existing abilities (\emph{interference}) --- without
+(\emph{capability gain}) minus damage to existing abilities (\emph{interference}), without
 naming a target capability. In a deliberately small toy (a modular neural network that
 ``develops'' with access to only half of its world's latent causes), CCS beats random search
 under an equal budget in 10 of 10 worlds ($p=0.002$), and the environments it selects raise
 few-shot performance on a held-out battery of tasks that depend on previously inaccessible
 latents from $0.28$ to $0.51$--$0.60$ R$^2$. The search's most useful finding was one we did not
 design in: \emph{acquire the new channel while the old sense is silent}. Changing only this one
-setting moves interference from $\approx\!0.01$ to $0.35$--$0.97$; a revert test shows why ---
+setting moves interference from $\approx\!0.01$ to $0.35$--$0.97$. A revert test shows why:
 with the old sense silent, its pathway receives no gradient, so the search rediscovered gradient
 isolation by choosing an input regime. Region-level ``adaptive plasticity'' did not beat global
 plasticity, and the search exploited a gap in our first interference metric; closing the gap and
-replicating in ten worlds left every finding standing. We report these as what a toy can show
---- a framing and a working method, not a claim about human brains.
+replicating in ten worlds left every finding standing. We report these as what a toy can show:
+a framing and a working method, not a claim about human brains.
 \end{abstract}
 
 \section{Motivation: reading as an existence proof}
@@ -82,8 +82,8 @@ CCS solves
 \begin{equation}
 e^\star=\arg\max_{e\in E}\; G(e)-\beta\, I(e)-\gamma\, T(e),
 \end{equation}
-with no term that names a particular capability. The probe bank is generic --- it asks about the
-world's generative factors, not about a task we hope to see --- and a separate held-out task
+with no term that names a particular capability. The probe bank is generic (it asks about the
+world's generative factors, not about a task we hope to see), and a separate held-out task
 battery, never used by the search, checks whether what was found is useful.
 
 \paragraph{Two loops.} The \emph{inner loop} is ordinary learning: $L$ is trained on $e$'s
@@ -99,7 +99,7 @@ intrinsic motivation \cite{oudeyer2007}, curriculum learning \cite{bengio2009} a
 \cite{hospedales2022}. The difference is the object of the search. Those methods mostly search for
 environments that make an \emph{agent} better at a given objective, or generate ever-harder tasks.
 CCS fixes the learner and asks which \emph{new capabilities} are reachable for it, and at what
-price in interference with what it already does --- the stability--plasticity problem
+price in interference with what it already does. This makes the stability--plasticity problem
 \cite{mccloskey1989,kirkpatrick2017} as a constraint on the search space rather than as a nuisance.
 
 \section{A toy instantiation}
@@ -116,13 +116,13 @@ pathway from $R_c$ into $R_2$ starts weak ($0.15\times$ normal scale), so at bir
 reaches the association region only below the noise floor.
 
 \paragraph{Environment space $E$.} Each environment is a genome:
-\emph{interface} --- which latents a new 16-d channel carries (any subset of 8), its code
+\emph{interface}: which latents a new 16-d channel carries (any subset of 8), its code
 (\texttt{linear}, Gaussian-tuned \texttt{population}, high-frequency \texttt{phase}, or
-\texttt{hashed} lookup) and noise level; \emph{objective} --- weights on reconstructing the channel
+\texttt{hashed} lookup) and noise level; \emph{objective}: weights on reconstructing the channel
 from $h_2$ and on \emph{aligning} channel-only $h_2$ to the representation the innate sense
-produces (a direct ``recycling'' signal); \emph{input condition} during learning --- channel only,
-both, or mixed; \emph{plasticity schedule} --- two phases, each unlocking any subset of
-$\{R_1,R_c,R_2\}$ for $0$--$600$ steps; and learning rate --- about $1.5\times10^8$ distinct environments.
+produces (a direct ``recycling'' signal); \emph{input condition} during learning: channel only,
+both, or mixed; \emph{plasticity schedule}: two phases, each unlocking any subset of
+$\{R_1,R_c,R_2\}$ for $0$--$600$ steps; and learning rate. That is about $1.5\times10^8$ distinct environments.
 
 \paragraph{Measurements.} $G$ is the mean change in few-shot ($n{=}64$) ridge-probe R$^2$ for each
 of the 8 latents from $h_2$, under two read-out conditions (channel only; sense + channel). $I$ is
@@ -131,8 +131,8 @@ $\gamma{=}0.02$ per 1200 steps.
 
 \paragraph{Outer loop and baselines.} A genetic algorithm (population 20, 12 generations,
 tournament selection, crossover, mutation, 2 elites) gives 240 inner-loop runs per search. We
-compare three plasticity regimes --- \emph{global} (all regions open for 600 steps), \emph{local}
-(only $R_c$), and \emph{adaptive} (schedule searched) --- and random search over the adaptive space
+compare three plasticity regimes, \emph{global} (all regions open for 600 steps), \emph{local}
+(only $R_c$), and \emph{adaptive} (schedule searched), and random search over the adaptive space
 with the same budget. Two hand-designed environments represent ``the obvious first guess'': carry
 all latents in a clean linear code, train by reconstruction with both inputs present, under global
 or local plasticity. Every result is repeated in three independently generated worlds (different
@@ -186,7 +186,7 @@ reconstruction objective, channel-only input, $R_c{+}R_2$ open for 150 steps).}
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}
 Condition & score & gain $G$ & interf.\ $I$ & all & visible & hidden\\
 \midrule
-No interface & --- & --- & --- & 0.379 & 0.829 & 0.283\\
+No interface & n/a & n/a & n/a & 0.379 & 0.829 & 0.283\\
 Hand-designed, global & $-0.183$ & 0.661 & 0.834 & 0.740 & 0.785 & 0.730\\
 Hand-designed, local & 0.121 & 0.131 & 0.000 & 0.460 & 0.819 & 0.384\\
 Random search, adaptive & 0.378 & 0.390 & 0.002 & 0.514 & 0.796 & 0.454\\
@@ -205,7 +205,7 @@ tasks depend on at least one of $z_4..z_7$ (33 of 40).}
 (Table~\ref{tab:main}, Fig.~\ref{fig:battery}), CCS-selected environments roughly double
 performance on tasks that need a hidden latent ($0.28\to0.58$--$0.60$) at a small cost on tasks
 over visible latents ($0.83\to0.79$). The hand-designed global environment does better still on
-the battery ($0.73$) --- but it does so by destroying the learner's existing ability: innate-task
+the battery ($0.73$), but it does so by destroying the learner's existing ability: innate-task
 R$^2$ falls from $0.97$ to $0.11$. The battery fits fresh readouts and so cannot see this; the
 interference term can. The two numbers have to be read together.
 
@@ -232,9 +232,9 @@ $0.10$ signal-SD, against $0.79$ when the sense is present. A \emph{revert test}
 damage lives: after training with both inputs, restoring $W_1$ alone to its developed value
 recovers $0.83$ of innate R$^2$ and restoring $W_{2a}$ recovers $0.44$; after channel-only
 training there is nothing to recover. All adaptation went into the new pathway ($W_c$, $W_{2b}$).
-In other words the search rediscovered \emph{gradient isolation} --- the principle behind weight
+In other words the search rediscovered \emph{gradient isolation}, the principle behind weight
 freezing, progressive networks and related continual-learning methods
-\cite{kirkpatrick2017} --- by choosing an input regime, without being told anything about the
+\cite{kirkpatrick2017}, by choosing an input regime, without being told anything about the
 architecture, while the ``obvious'' hand-designed regime missed it. That is both the argument for
 CCS and the limit of the claim: in hindsight the principle is familiar; what the search
 contributes is finding it. The pattern is loosely reminiscent of the recruitment of deprived
@@ -284,7 +284,7 @@ $0.513$ here, and $0.395$ vs.\ $0.409$ in the ten-world replication below ($p=0.
 plasticity gating would otherwise do. The caveat is in Table~\ref{tab:ablation}: when the
 protective input condition is removed, the adaptive winners' shorter, partial schedules keep
 interference at $0.35$ against $0.83$ for global plasticity. Plasticity control looks like a second
-line of defence rather than the main one --- suggestive only, with three worlds. Purely
+line of defence rather than the main one; this is suggestive only, with three worlds. Purely
 \emph{local} plasticity (only the interface region) was the clearest failure: $R_c$ alone cannot
 amplify a pathway into $R_2$ that starts below the noise floor, so gains plateaued at $\approx0.19$.
 A new capability needed the association region to change.
@@ -351,15 +351,15 @@ measure.
 
 It does not show anything about human brains. The learner is a three-region $\tanh$ network; the
 ``capability'' is linear decodability of a synthetic world's factors; ten worlds and 240
-evaluations per search are small, and the environment space is one we designed. The probe bank, though generic, is still a choice --- capabilities that are
+evaluations per search are small, and the environment space is one we designed. The probe bank, though generic, is still a choice: capabilities that are
 not functions of $z$ (new kinds of computation rather than new information) are invisible to it.
 
 \section{Why this might matter}
 The near-term version of CCS is practical: searching the design space of sensory-substitution
 devices, BCIs and training curricula with an explicit interference budget, using models of the
 learner fitted to behavioural or neural data as the inner loop. The far version is a question:
-are there cognitive modalities with no cultural analogue yet --- for example, a brain that has
-learned to treat another person's neural state as an ordinary perceptual input --- sitting inside
+are there cognitive modalities with no cultural analogue yet (for example, a brain that has
+learned to treat another person's neural state as an ordinary perceptual input) sitting inside
 the constraints of the human brain, undiscovered because nobody has built the right interface or
 training environment? We do not claim this toy says anything about that. We claim it is the right
 shape of question, and that it can be posed as a search.
@@ -367,7 +367,13 @@ shape of question, and that it can be posed as a search.
 \paragraph{Reproducibility.} Code, results and figures are released (NumPy and Matplotlib
 only); \texttt{run\_experiments.py}, \texttt{run\_ablation.py}, \texttt{run\_mechanism.py} and
 \texttt{make\_figures.py} regenerate every number here, and \texttt{--metric v2 --worlds 10}
-reproduces the replication. Developed with AI assistance (Claude) for code and drafting.
+reproduces the replication.
+
+\paragraph{How this was made.} The research question, the framing of capability search and the
+decisions about what to test are the author's. Code, experiments, figures and the draft were
+produced with Claude (Anthropic) working from those decisions; every number is generated by the
+released code and was re-run in a clean environment. The replication and the mechanism analysis
+were added after the first version to test the main finding rather than to extend it.
 
 \small
 \bibliographystyle{unsrtnat}
