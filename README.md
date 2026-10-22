@@ -18,6 +18,8 @@ structure becomes cheaply (few-shot) readable from the learner's internal repres
 is damage to the abilities it already had. A held-out task battery the search never sees checks whether
 what was found is actually useful.
 
+🔬 **Interactive results page:** https://noamshalom.github.io/cognitive-capability-search/
+
 📄 **Paper:** [`paper/paper.pdf`](paper/paper.pdf): *Searching the Cognitive Possibility Space: A
 Computational Framework for Discovering Learnable Capabilities*
 
